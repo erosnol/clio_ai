@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="20" viewBox="0 0 800 20" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="greek-pattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M0 10 h5 v-5 h5 v5 h5 v-5" fill="none" stroke="#D4AF37" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="20" fill="url(#greek-pattern)"/>
+</svg>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="30" viewBox="0 0 800 30" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="divine-pattern" x="0" y="0" width="40" height="30" patternUnits="userSpaceOnUse">
+      <path d="M0 15 Q10 0 20 15 Q30 30 40 15" fill="none" stroke="#D4AF37" stroke-width="1"/>
+      <path d="M0 15 Q10 30 20 15 Q30 0 40 15" fill="none" stroke="#D4AF37" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="30" fill="url(#divine-pattern)"/>
+</svg>

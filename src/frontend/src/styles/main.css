@@ -1,0 +1,136 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-gold: #D4AF37;
+  --color-cream: #FFF8E7;
+  --color-scroll: #8B7355;
+}
+
+body {
+  font-family: 'Cormorant Garamond', serif;
+  background-color: var(--color-cream);
+  color: #2C1810;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Cinzel Decorative', cursive;
+}
+
+.nav-link {
+  font-family: 'Cinzel', serif;
+}
+
+/* Divine Scroll Patterns */
+.divine-pattern {
+  background-image: url('/images/divine-pattern.svg');
+  background-repeat: repeat-x;
+  height: 30px;
+  opacity: 0.6;
+}
+
+.greek-pattern {
+  background-image: url('/images/greek-pattern.svg');
+  background-repeat: repeat-x;
+  height: 20px;
+  opacity: 0.4;
+}
+
+/* Scroll Animations */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1s ease-out;
+}
+
+.scroll-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Divine Card Styles */
+.divine-card {
+  background: rgba(255, 248, 231, 0.95);
+  border: 1px solid var(--color-gold);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.divine-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(212, 175, 55, 0.2);
+}
+
+/* Laurel Decorations */
+.laurel-left, .laurel-right {
+  position: absolute;
+  width: 40px;
+  height: auto;
+  opacity: 0.8;
+}
+
+.laurel-left {
+  left: -20px;
+  transform: scaleX(-1);
+}
+
+.laurel-right {
+  right: -20px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-scroll);
+  border: 3px solid var(--color-cream);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6B5744;
+}
+
+/* Timeline Styles */
+.timeline-dot {
+  background: var(--color-gold);
+  border: 2px solid #2C1810;
+  box-shadow: 0 0 0 4px var(--color-cream);
+}
+
+.timeline-line {
+  background: linear-gradient(to bottom, transparent, var(--color-gold), transparent);
+  opacity: 0.4;
+}
+
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(rgba(44, 24, 16, 0.9), rgba(44, 24, 16, 0.7)),
+              url('/images/ancient-pattern.svg');
+  background-size: 100px 100px;
+  background-position: center;
+  color: var(--color-cream);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 1s ease-out;
+}
