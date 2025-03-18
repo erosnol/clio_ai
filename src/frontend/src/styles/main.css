@@ -1,17 +1,28 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Import Tailwind CSS */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 :root {
   --color-gold: #D4AF37;
   --color-cream: #FFF8E7;
   --color-scroll: #8B7355;
+  --safe-area-inset-top: env(safe-area-inset-top);
+  --safe-area-inset-bottom: env(safe-area-inset-bottom);
 }
 
 body {
   font-family: 'Cormorant Garamond', serif;
   background-color: var(--color-cream);
   color: #2C1810;
+  -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-bottom: calc(4rem + env(safe-area-inset-bottom));
+  }
 }
 
 h1, h2, h3, h4 {
@@ -22,19 +33,67 @@ h1, h2, h3, h4 {
   font-family: 'Cinzel', serif;
 }
 
-/* Divine Scroll Patterns */
+/* Sparkle Animation */
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+.sparkle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--color-gold);
+  pointer-events: none;
+}
+
+.sparkle:nth-child(1) { top: 20%; left: 10%; animation: sparkle 2s ease-in-out infinite; }
+.sparkle:nth-child(2) { top: 60%; left: 80%; animation: sparkle 2.5s ease-in-out infinite 0.3s; }
+.sparkle:nth-child(3) { top: 30%; left: 90%; animation: sparkle 1.8s ease-in-out infinite 0.5s; }
+
+/* Divine Scroll Patterns - Enhanced for Mobile */
 .divine-pattern {
   background-image: url('/images/divine-pattern.svg');
   background-repeat: repeat-x;
-  height: 30px;
-  opacity: 0.6;
+  background-size: auto 100%;
+  height: 4px;
+  opacity: 0.8;
+  mix-blend-mode: normal;
+  animation: patternFloat 30s linear infinite;
+  position: relative;
+  z-index: 1;
 }
 
 .greek-pattern {
   background-image: url('/images/greek-pattern.svg');
   background-repeat: repeat-x;
-  height: 20px;
-  opacity: 0.4;
+  background-size: auto 100%;
+  height: 4px;
+  opacity: 0.8;
+  mix-blend-mode: normal;
+  animation: patternFloat 20s linear infinite reverse;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes patternFloat {
+  from { background-position-x: 0; }
+  to { background-position-x: 200%; }
+}
+
+/* Add a glow effect to patterns */
+.divine-pattern::after,
+.greek-pattern::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit;
+  filter: blur(1px);
+  opacity: 0.5;
 }
 
 /* Scroll Animations */
@@ -49,17 +108,77 @@ h1, h2, h3, h4 {
   transform: translateY(0);
 }
 
-/* Divine Card Styles */
+/* Divine Card Styles - Mobile Optimized */
 .divine-card {
   background: rgba(255, 248, 231, 0.95);
   border: 1px solid var(--color-gold);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
+  padding: 1.75rem;
+  margin: 0;
+  border-radius: 1rem;
+  touch-action: manipulation;
+  min-height: 44px;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
-.divine-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 12px rgba(212, 175, 55, 0.2);
+.divine-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-gold), transparent);
+  opacity: 0.5;
+}
+
+.divine-card h3 {
+  position: relative;
+  z-index: 1;
+}
+
+.divine-card h3::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 2px;
+  background-color: var(--color-gold);
+  opacity: 0.6;
+}
+
+.coming-soon {
+  background: linear-gradient(135deg, var(--color-cream), #F5E6D3);
+  border: 2px dashed var(--color-gold);
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cinzel', serif;
+  color: var(--color-gold);
+  font-size: 1.25rem;
+  min-height: 100px;
+}
+
+@media (hover: hover) {
+  .divine-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(212, 175, 55, 0.2);
+  }
+}
+
+@media (hover: none) {
+  .divine-card:active {
+    transform: scale(0.98);
+    background: rgba(255, 248, 231, 0.98);
+  }
 }
 
 /* Laurel Decorations */
@@ -110,13 +229,226 @@ h1, h2, h3, h4 {
   opacity: 0.4;
 }
 
-/* Hero Section */
+/* Hero Section with Divine Hall 1 - Mobile Optimized */
 .hero-section {
-  background: linear-gradient(rgba(44, 24, 16, 0.9), rgba(44, 24, 16, 0.7)),
-              url('/images/ancient-pattern.svg');
-  background-size: 100px 100px;
+  background: linear-gradient(rgba(44, 24, 16, 0.5), rgba(44, 24, 16, 0.3)),
+              url('/images/backgrounds/erosnol_A_vast_ancient_Greek_library_bathed_in_ethereal_golde_e998ebf1-76ee-4579-8e06-c104e5ac4764_0.png');
+  background-size: cover;
   background-position: center;
   color: var(--color-cream);
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: center;
+}
+
+/* Desktop Styles */
+@media (min-width: 769px) {
+  .hero-section {
+    padding: 0;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .chronicles-section,
+  .library-section {
+    padding: 6rem 0;
+    position: relative;
+  }
+
+  .chronicles-section::before,
+  .library-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, 
+      transparent, 
+      var(--color-gold),
+      transparent
+    );
+    opacity: 0.3;
+  }
+
+  .divine-card {
+    transform: translateY(0);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .divine-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(212, 175, 55, 0.15);
+  }
+
+  /* Educational theme enhancements */
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  h2 {
+    margin-bottom: 3rem;
+    position: relative;
+    display: inline-block;
+  }
+
+  h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--color-gold);
+    opacity: 0.6;
+  }
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: calc(100vh - 44px);
+    margin-top: 44px;
+  }
+
+  .hero-section h1 {
+    font-size: 2.5rem;
+    padding: 0 1rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .hero-section p {
+    font-size: 1.25rem;
+    padding: 0 1.5rem;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  .hero-section .button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0 1.5rem;
+  }
+
+  .hero-section .button {
+    width: 100%;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.125rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transform: translateY(0);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .hero-section .button:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Ensure consistent spacing in mobile cards */
+  .divine-card {
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section h1 {
+    font-size: 2.5rem;
+    padding: 0 1rem;
+  }
+
+  .hero-section p {
+    font-size: 1.25rem;
+    padding: 0 1rem;
+  }
+}
+
+/* Chronicles Section with Divine Hall 2 */
+.chronicles-section {
+  background: linear-gradient(rgba(255, 248, 231, 0.9), rgba(255, 248, 231, 0.7)),
+              url('/images/backgrounds/erosnol_A_vast_ancient_Greek_library_bathed_in_ethereal_golde_e998ebf1-76ee-4579-8e06-c104e5ac4764_1.png');
+  background-size: cover;
+  background-position: center;
+}
+
+/* Library Section with Divine Hall 3 */
+.library-section {
+  background: linear-gradient(rgba(44, 24, 16, 0.7), rgba(44, 24, 16, 0.5)),
+              url('/images/backgrounds/erosnol_A_vast_ancient_Greek_library_bathed_in_ethereal_golde_e998ebf1-76ee-4579-8e06-c104e5ac4764_2.png');
+  background-size: cover;
+  background-position: center;
+}
+
+/* Clio's Portrait Background */
+.clio-section {
+  background: linear-gradient(rgba(44, 24, 16, 0.8), rgba(44, 24, 16, 0.6)),
+              url('/images/backgrounds/erosnol_Clio_the_Greek_muse_of_history_depicted_in_a_grand_an_dcf4c9ce-ffc3-4753-99a8-ea88983b7426_0.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.chronicles-section {
+  background: linear-gradient(rgba(255, 248, 231, 0.9), rgba(255, 248, 231, 0.7)),
+              url('/images/divine-hall-2.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.library-section {
+  background: linear-gradient(rgba(44, 24, 16, 0.8), rgba(44, 24, 16, 0.6)),
+              url('/images/divine-hall-4.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.clio-portrait {
+  position: relative;
+}
+
+.clio-portrait::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('/images/clio-portrait.jpg') no-repeat center;
+  background-size: cover;
+  opacity: 0.15;
+  z-index: 0;
+}
+
+.divine-glow {
+  position: relative;
+}
+
+.divine-glow::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, rgba(212, 175, 55, 0.2), transparent 70%);
+  pointer-events: none;
 }
 
 /* Animations */
