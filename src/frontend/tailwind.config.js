@@ -19,6 +19,25 @@ export default {
         'cinzel-decorative': ['Cinzel Decorative', 'cursive'],
         'cormorant': ['Cormorant Garamond', 'serif'],
       },
+      spacing: {
+        'safe-top': 'env(safe-area-inset-top)',
+        'safe-bottom': 'env(safe-area-inset-bottom)',
+      },
+      minHeight: {
+        'touch': '44px',
+      },
+      borderRadius: {
+        'xl': '1rem',
+      },
+      keyframes: {
+        gradient: {
+          '0%, 100%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
+        },
+      },
+      animation: {
+        gradient: 'gradient 8s ease infinite',
+      },
       backgroundImage: {
         'divine-pattern': "url('/images/divine-pattern.svg')",
         'greek-pattern': "url('/images/greek-pattern.svg')",
