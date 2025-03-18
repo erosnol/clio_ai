@@ -15,19 +15,22 @@
     "lint": "eslint src/"
   },
   "dependencies": {
+    "@elizaos/adapter-sqlite": "^0.25.6-alpha.1",
+    "@elizaos/client-twitter": "^0.25.6-alpha.1",
     "@heroicons/react": "^2.2.0",
+    "@iqai/agent": "^0.2.0",
     "axios": "^1.6.0",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "framer-motion": "^12.5.0",
     "gsap": "^3.12.7",
     "morgan": "^1.10.0",
-    "node-cron": "^3.0.0",
+    "node-cron": "^3.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.30.0",
     "scrollmagic": "^2.0.8",
-    "twitter-api-v2": "^1.15.0"
+    "twitter-api-v2": "^1.20.2"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.10",
