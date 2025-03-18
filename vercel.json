@@ -1,34 +1,16 @@
 {
   "version": 2,
-  "builds": [
+  "buildCommand": "cd src/frontend && npm install && npm run build",
+  "outputDirectory": "src/frontend/dist",
+  "framework": "vite",
+  "rewrites": [
     {
-      "src": "src/server.js",
-      "use": "@vercel/node"
+      "source": "/api/(.*)",
+      "destination": "/src/api/server.js"
     },
     {
-      "src": "src/startScheduler.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "src/server.js"
-    },
-    {
-      "src": "/bot",
-      "dest": "src/startScheduler.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/dist/$1"
+      "source": "/bot/(.*)",
+      "destination": "/src/bot/core/index.js"
     }
   ],
   "env": {
